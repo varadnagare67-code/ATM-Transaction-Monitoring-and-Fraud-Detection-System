@@ -3,15 +3,11 @@ import csv
 from datetime import datetime
 import os
 
-# -----------------------------
-# Ensure reports directory exists
-# -----------------------------
+
 REPORTS_DIR = "reports"
 os.makedirs(REPORTS_DIR, exist_ok=True)
 
-# -----------------------------
-# Database Connection
-# -----------------------------
+
 conn = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -21,9 +17,6 @@ conn = mysql.connector.connect(
 
 cursor = conn.cursor(dictionary=True)
 
-# =====================================================
-# DAILY SUMMARY REPORT (ONE FILE)
-# =====================================================
 
 cursor.execute("""
     SELECT 
@@ -56,9 +49,6 @@ with open(os.path.join(REPORTS_DIR, "daily_summary_report.csv"),
             row["total_amount"]
         ])
 
-# =====================================================
-# FRAUD ALERTS REPORT (ONE FILE)
-# =====================================================
 
 fraud_alerts = []
 
@@ -147,8 +137,6 @@ with open(os.path.join(REPORTS_DIR, "fraud_alerts.csv"),
     writer.writerow([])
     writer.writerow(["TOTAL FRAUDS DETECTED", total_frauds])
 
-# -----------------------------
-# Cleanup
-# -----------------------------
+
 cursor.close()
 conn.close()
