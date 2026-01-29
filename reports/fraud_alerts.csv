@@ -1,0 +1,5 @@
+Fraud Rule,Customer ID,Details,Detected Time
+High Amount Withdrawal,1,Amount: 80000.00,2026-01-28 20:39:50
+High Amount Withdrawal,3,Amount: 90000.00,2026-01-28 20:39:50
+
+TOTAL FRAUDS DETECTED,2
